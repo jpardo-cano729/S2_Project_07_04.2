@@ -57,8 +57,9 @@ function verifyCrops() {
     //Goes through every checkbox if it is not checked then it will return a message back at the user telling them what they have done wrong  
     try {
         for (var i = 0; i < 7; i++) {
-            if(cropsFieldset.getElementsByTagName("input")[i]. checked) { 
-            cropscomplete = true; 
+            //The checked property was to spaced out and was not correctly executing
+            if (cropsFieldset.getElementsByTagName("input")[i].checked) { 
+            cropsComplete = true; 
             messageElement.innerHTML = ""; // clear previous message or recommendation   
             testFormCompleteness(); 
             i = 8;
@@ -68,6 +69,7 @@ function verifyCrops() {
             throw "Please select at least one crop.";
             }
      } catch (message) {
+        //Fixed a camelCase issue with the variable name 
         cropsComplete = false;
         messageHeadElement.innerHTML = "";
         messageElement.innerHTML = message;  // display error Message       
@@ -77,7 +79,7 @@ function verifyCrops() {
 /* verify months text box entry is between 1 and 12 */
 function verifyMonths() {
     var validity = true;
-    var massageText = "";
+    var messageText = "";
 
     try {
         if (!(monthsBox.value >= 1 && monthsBox.value <= 12)){
